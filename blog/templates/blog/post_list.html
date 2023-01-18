@@ -1,16 +1,13 @@
 {% extends 'blog/base.html' %}
-{% load static %}
 
-    {% block title %} Inicio {% endblock %}
-    
-    {% block content %}
-    {% for post in posts %}<br><div class="row gx-5 gx-lg-6 justify-content-center">
-        <div class="col-lg-8">
-    <article>
-        <h2><a>{{ post.title }}</a></h2><br>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </article></div></div>
+{% block content %}
+    {% for post in posts %}
+        <article class="post">
+            <time class="date">
+                {{ post.published_date }}
+            </time>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </article>
     {% endfor %}
-<br>
-    <img src="{% static 'img/fashion.webp' %}" alt="fashion">
 {% endblock %}

@@ -1,33 +1,13 @@
 {% extends 'blog/base.html' %}
-{% load static %}
-
-    {% block title %} Inicio {% endblock %}
-    
-    {% block content %}
-    {% for post in posts %}<br><div class="row gx-5 gx-lg-6 justify-content-center">
-        <div class="col-lg-8">
-            s<aside class="actions">
-                <a class="btn btn-secondary" href="{% url 'post_edit' pk=post.pk %}">
-                  {% include './icons/pencil-fill.svg' %}
-                </a>
-            </aside>
-    <article>
-        <h2><a>{{ post.title }}</a></h2><br>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </article></div></div>
-    {% endfor %}
-<br>
-    <img src="{% static 'img/fashion.webp' %}" alt="fashion">
-    {% endblock %}
-{% comment %} 
-    {% extends 'blog/base.html' %}
 
 {% block content %}
     <article class="post">
         <aside class="actions">
+            {% if user.is_authenticated %}
             <a class="btn btn-secondary" href="{% url 'post_edit' pk=post.pk %}">
-                {% include './icons/pencil-fill.svg' %}
-            </a>
+              EDIT POST
+              </a>
+       {% endif %}
         </aside>
         {% if post.published_date %}
             <time class="date">
@@ -37,4 +17,4 @@
         <h2>{{ post.title }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
     </article>
-{% endblock %} {% endcomment %}
+{% endblock %}
