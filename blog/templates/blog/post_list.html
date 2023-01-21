@@ -8,7 +8,10 @@
             </time>
             <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
             <p>{{ post.text|linebreaksbr }}</p>
-        </article>
-    {% comment %} {% include 'comments.html' %}     {% endcomment %}
+      
+      Comments: {{ post.comments.count }}
+        </article><br>
+      
+
     {% endfor %}
 {% endblock %}

@@ -4,6 +4,10 @@ p {
     color: rgb(178, 110, 223);
 }
 
+body {
+    margin-left: 200px;
+}
+
 :root {
     --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
