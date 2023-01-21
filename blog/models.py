@@ -25,12 +25,12 @@ class Comment(models.Model):
     approved_comment = models.BooleanField(default=False)
     
     def publish(self):
-        # self.published_date = timezone.now()
+        self.published_date = timezone.now()
         self.save()
 
-    # def approve(self):
-    #     self.approved_comment = True
-    #     self.save()
+    def approve(self):
+        self.approved_comment = True
+        self.save()
 
-    # def __str__(self):
-    #     return self.text
+    def __str__(self):
+        return self.text
