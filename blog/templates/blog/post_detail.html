@@ -1,6 +1,13 @@
 {% extends 'blog/base.html' %}
 {% block title %} DETAILS {% endblock %}
 {% block content %}
+<style>
+
+    article{
+        margin-right: 200px;
+        margin-left: 200px
+    }
+</style>
     <article class="post">
         <aside class="actions">
             {% if user.is_authenticated %}
@@ -11,17 +18,29 @@
         </aside><br>
             <a class="btn btn-secondary" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
 
-            <a class="btn btn-default" href="{% url 'comment_remove' pk=post.pk %}">REMOVE COMMENT</a>
+            {% comment %} <a class="btn btn-default" href="{% url 'comment_remove' pk=post.pk %}">REMOVE COMMENT</a> {% endcomment %}
+<br><br>
+            <form method="POST" action="{% url 'like' pk=post.pk %}">
+                {% csrf_token %}
+                
+                <button type="submit" class="btn"><i class="fa fa-heart"></i></button>
+                Likes: {{post.likes.count}}
+             </form>
+<br><hr>
+<h2>COMMENTS: {{ post.comments.count  }}</h2>
+{% for comment in comments %}
+    <hr>
+        <article class="comment">
+            <time class="date">
+                {{ comment.published_date }}
+            </time>
+            <strong>{{ comment.author }}</strong>
+            <p>{{ comment.text|linebreaksbr }}</p>
+      
+      
+        </article><br>
+    </article><br>
 
-            <div class="comment">
-                <div class="date">{{ comment.created_date }}</div>
-                <strong>{{ comment.author }}</strong>
-                <p>{{ comment.text|linebreaks }}</p>
-            </div>
-            {% endif %}
-            <div data-gb-custom-block data-tag="empty">
-                <p>No comments here yet :(</p>
-            </div>
-            
-    </article>
+    {% endfor %}
+    {% endif %}
 {% endblock %}

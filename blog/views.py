@@ -73,7 +73,15 @@ def add_comment_to_post(request, pk):
         form = CommentForm()
     return render(request, 'blog/add_comment_to_post.html', {'form': form})
 
-def comment_remove(request, pk):
-    comment = get_object_or_404(Comment, pk=pk)
-    comment.delete()
-    return redirect('post_detail', pk=comment.post.pk)
+# def comment_remove(request, pk):
+#     comment = get_object_or_404(Comment, pk=pk)
+#     comment.delete()
+#     return redirect('post_detail', pk=comment.post.pk)
+
+
+def like(request, pk):
+    if request.method == 'POST':
+        post = Post.objects.get(id=pk)
+        # Maneja el proceso para guardar el like en la tabla de likes.
+        # Retorna una respuesta al cliente indicando si el like se ha guardado correctamente.
+        return redirect('post_detail', pk=post.pk)
