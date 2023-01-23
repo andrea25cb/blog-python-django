@@ -35,4 +35,8 @@ class Like(models.Model):
     post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='likes')
     author = models.CharField(max_length=200) 
     like = models.IntegerField()
-    
+
+class Dislike(models.Model):
+    post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='dislikes')
+    author = models.CharField(max_length=200) 
+    like = models.IntegerField()

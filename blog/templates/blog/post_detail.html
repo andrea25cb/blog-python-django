@@ -16,29 +16,38 @@
               </a>
    
         </aside><br>
-            <a class="btn btn-secondary" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+        <aside class="actions">
+           
+            <a class="btn btn-secondary" href="{% url 'post_delete' pk=post.pk %}">
+              DELETE POST
+              </a>
+        </aside><br>
+
+            <a class="btn btn-secondary" href="{% url 'add_comment_to_post' pk=post.pk %}">ADD COMMENT</a>
 
             {% comment %} <a class="btn btn-default" href="{% url 'comment_remove' pk=post.pk %}">REMOVE COMMENT</a> {% endcomment %}
 <br><br>
-            <form method="POST" action="{% url 'like' pk=post.pk %}">
+            {% comment %} <form method="POST" action="{% url 'like' pk=post.pk %}">
                 {% csrf_token %}
                 
                 <button type="submit" class="btn"><i class="fa fa-heart"></i></button>
-                Likes: {{post.likes.count}}
-             </form>
+             
+
+             </form> {% endcomment %}   Likes: {{post.likes.count}}
+             <a href="{% url 'like_post' post.pk %}">Like</a>
+            <a href="{% url 'dislike_post' post.pk %}">Dislike</a>
 <br><hr>
 <h2>COMMENTS: {{ post.comments.count  }}</h2>
 {% for comment in comments %}
     <hr>
         <article class="comment">
-            <time class="date">
-                {{ comment.published_date }}
-            </time>
+            <div>
+                {{ comment.created_date }}
+            </div>
             <strong>{{ comment.author }}</strong>
             <p>{{ comment.text|linebreaksbr }}</p>
       
-      
-        </article><br>
+        </article>
     </article><br>
 
     {% endfor %}
