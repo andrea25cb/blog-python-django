@@ -2,9 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
 from .models import Post, Comment, Like, Dislike
-from .forms import PostForm,CommentForm
-from .forms import PostForm, CommentForm
-from .forms import PostForm
+from .forms import PostForm,CommentForm,ContactForm
 
 def post_list(request):
     posts = Post.objects.all()
@@ -32,6 +30,20 @@ def fashionblog(request):
 
 def contacto(request):
     return render(request, 'blog/contacto.html')
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            # Enviar correo electrónico o guardar en base de datos
+            ...
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})
+
 
 
 

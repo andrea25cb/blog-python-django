@@ -5,7 +5,7 @@
 
     {% block content %}
     
-      <section class="about-section text-center" id="about">
+      <section class="about-section text-center" id="contact">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-lg-8">
@@ -17,6 +17,31 @@
                     </p>
                 </div>
             </div>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                
+                <div  class="text-white-50" class="form-group">
+                    <label for="user">User:</label>
+                    <input type="text" class="form-control" id="pwuserd">
+                  </div>
+<br>
+                    <div  class="text-white-50" class="form-group">
+                      <label for="email">Email address:</label>
+                      <input type="email" class="form-control" id="email">
+                    </div>
+                    <br>
+                    <div  class="text-white-50" class="form-group">
+                        <label for="pwd">Mesagge:</label>
+                        <textarea class="form-control"></textarea>
+                      </div>
+                    <div  class="text-white-50" class="checkbox">
+                      <label><input type="checkbox"> Remember me</label>
+                    </div><br>
+                    <button type="submit" class="btn btn-secondary">Submit</button>
+                    
+                  </form>
+            
             <img src="{% static 'img/fashion3.webp' %}" alt="fashion" width="1300px">
         </div>
     </section>
@@ -25,7 +50,7 @@
             <div class="row gx-4 gx-lg-5">
                 <div class="col-md-10 col-lg-8 mx-auto text-center">
                     <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                    <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
+                    <h2 class="text-black mb-5">Subscribe to receive updates!</h2>
         
                     <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
                         <!-- Email address input-->
@@ -71,7 +96,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div><br>
             <div class="social d-flex justify-content-center">
                 <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                 <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
