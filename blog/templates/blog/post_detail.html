@@ -33,9 +33,10 @@
                 <button type="submit" class="btn"><i class="fa fa-heart"></i></button>
              
 
-             </form> {% endcomment %}   Likes: {{post.likes.count}}
-             <a href="{% url 'like_post' post.pk %}">Like</a>
-            <a href="{% url 'dislike_post' post.pk %}">Dislike</a>
+             </form> {% endcomment %}   
+             <a href="{% url 'post_like' pk=post.pk %}"><i class="fa-solid fa-heart"></i></a>
+             Likes: {{post.likes}}
+           
 <br><hr>
 <h2>COMMENTS: {{ post.comments.count  }}</h2>
 {% for comment in comments %}

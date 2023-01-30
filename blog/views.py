@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
-from .models import Post, Comment, Like, Dislike
+from .models import Post, Comment
 from .forms import PostForm,CommentForm,ContactForm
 
 def post_list(request):
@@ -43,8 +43,6 @@ def contact(request):
     else:
         form = ContactForm()
     return render(request, 'contact.html', {'form': form})
-
-
 
 
 def post_new(request):
@@ -95,14 +93,14 @@ def post_delete(request, pk):
     return render(request, 'blog/post_confirm_delete.html', {'post': post})
 
 
-def like_post(request, pk):
+def post_like(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    if request.method == "POST":
-        Like.objects.create(post=post, user=request.user)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    post.likes = post.likes + 1 
+    post.save()
+    return redirect('post_detail', pk=post.pk)
 
-def dislike_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    if request.method == "POST":
-        Dislike.objects.create(post=post, user=request.user)
-    return render(request, 'blog/post_detail.html', {'post': post})
+# def dislike_post(request, pk):
+#     post = get_object_or_404(Post, pk=pk)
+#     if request.method == "POST":
+#         Dislike.objects.create(post=post, user=request.user)
+#     return render(request, 'blog/post_detail.html', {'post': post})
