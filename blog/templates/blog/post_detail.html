@@ -44,10 +44,13 @@
         <article class="comment">
             <div>
                 {{ comment.created_date }}
+                <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><i class="fa-sharp fa-solid fa-trash"></i></a>
             </div>
             <strong>{{ comment.author }}</strong>
-            <p>{{ comment.text|linebreaksbr }}</p>
-      
+            <p>{{ comment.text|linebreaks }}</p>
+{% empty %}
+            <p>No comments here yet :(</p>
+    
         </article>
     </article><br>
 
