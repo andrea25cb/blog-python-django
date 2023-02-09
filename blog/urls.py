@@ -11,7 +11,9 @@ urlpatterns = [
     path('post/<int:pk>/like/', views.post_like, name='post_like'),
 #    url(r'^comment/(?P<pk>[0-9]+)/approve/$', views.comment_approve, name='comment_approve'),
     path('post/<int:pk>/remove/', views.comment_remove, name='comment_remove'),
+    path('login/', views.login, name='login'),
 ]
+
 
 urlpatterns += [
     path('fashionblog/', views.fashionblog, name='fashionblog'),
