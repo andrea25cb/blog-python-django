@@ -1,6 +1,23 @@
 {% extends 'blog/base.html' %}
 {% block title %} MENU {% endblock %}
 {% block content %}
+
+<header class="masthead">
+    <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+        <div class="d-flex justify-content-center">
+            <div class="text-center"><br>
+
+                <h1 class="text-pink-50" >FASHION BLOG</h1>
+                {% if user.is_authenticated %}
+                <a class="btn btn-secondary" href="{% url 'post_new' %}" class="top-menu">
+             NEW POST
+                </a>
+             
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
     {% for post in posts %}
     <hr>
         <article class="post">

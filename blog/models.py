@@ -38,27 +38,27 @@ class Comment(models.Model):
 #     like = models.IntegerField()
 
 
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 
-class Profile(models.Model):
-    """Profile model.
+# class Profile(models.Model):
+#     """Profile model.
 
-    Proxy model that extends the base data with other
-    information.
-    """
-    user = models.OneToOneField(User, on_delete=models.PROTECT)
+#     Proxy model that extends the base data with other
+#     information.
+#     """
+#     user = models.OneToOneField(User, on_delete=models.PROTECT)
 
-    website = models.URLField(max_length=200, blank=True)
+#     website = models.URLField(max_length=200, blank=True)
 
-    photo = models.ImageField(
-        upload_to='users/pictures',
-        blank=True,
-        null=True
-    )
+#     photo = models.ImageField(
+#         upload_to='users/pictures',
+#         blank=True,
+#         null=True
+#     )
 
-    date_modified = models.DateTimeField(auto_now=True)
+#     date_modified = models.DateTimeField(auto_now=True)
 
 
-    def __str__(self):
-        """Return username."""
-        return self.user.username
+#     def __str__(self):
+#         """Return username."""
+#         return self.user.username

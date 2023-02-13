@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.shortcuts import redirect
 from .models import Post, Comment
-from .forms import PostForm,CommentForm,ContactForm,LoginForm
+from .forms import PostForm,CommentForm,ContactForm
 
 def post_list(request):
     posts = Post.objects.all()
@@ -104,12 +104,6 @@ def post_like(request, pk):
     post.likes = post.likes + 1 
     post.save()
     return redirect('post_detail', pk=post.pk)
-
-# def dislike_post(request, pk):
-#     post = get_object_or_404(Post, pk=pk)
-#     if request.method == "POST":
-#         Dislike.objects.create(post=post, user=request.user)
-#     return render(request, 'blog/post_detail.html', {'post': post})
 
 from django.contrib.auth import authenticate, login
 

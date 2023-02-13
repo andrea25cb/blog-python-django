@@ -1,0 +1,6 @@
+{% extends 'blog/base.html' %}
+{% block title %} Web Blog Iniciio {% endblock %}
+{% block content %}
+<p>Logged out!</p>
+<a class="dropdown-item" href="{% url 'login' %}?next={{request.path}}">Login again</a>
+{% endblock %}
