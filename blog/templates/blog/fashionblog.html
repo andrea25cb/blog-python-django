@@ -2,7 +2,12 @@
 {% load static %}    
 {% block title %} NEWS {% endblock %}
     {% block content %}
-
+    <style>
+        body{
+            background-image: url('https://i.pinimg.com/564x/67/fa/d0/67fad04f1997dec9aa3702ae5dccb80a.jpg');
+            background-size:100%
+        }
+    </style>
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-lg-8"><br><br><br><br><br>
@@ -68,5 +73,6 @@
         </div>
     </section>
     <br><br>
+    <center>
     <img src="{% static 'img/fashion.webp' %}" alt="Texto alternativo">
 {% endblock %}

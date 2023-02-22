@@ -1,58 +1,48 @@
 {% extends 'blog/base.html' %}
 {% block title %} DETAILS {% endblock %}
 {% block content %}
-<style>
 
-    article{
-        margin-right: 200px;
-        margin-left: 200px
-    }
-</style>
     <article class="post">
         <aside class="actions">
             {% if user.is_authenticated %}
+            {% if perms.blog.edit_post %}
             <a class="btn btn-secondary" href="{% url 'post_edit' pk=post.pk %}">
               EDIT POST
               </a>
-   
+              {%endif%}
         </aside><br>
         <aside class="actions">
-           
+            {% if perms.blog.post_delete %}
             <a class="btn btn-secondary" href="{% url 'post_delete' pk=post.pk %}">
               DELETE POST
               </a>
+              {%endif%}
         </aside><br>
-
+        {% if perms.blog.add_comment %}
             <a class="btn btn-secondary" href="{% url 'add_comment_to_post' pk=post.pk %}">ADD COMMENT</a>
-
-            {% comment %} <a class="btn btn-default" href="{% url 'comment_remove' pk=post.pk %}">REMOVE COMMENT</a> {% endcomment %}
+        {%endif%}
 <br><br>
-            {% comment %} <form method="POST" action="{% url 'like' pk=post.pk %}">
-                {% csrf_token %}
-                
-                <button type="submit" class="btn"><i class="fa fa-heart"></i></button>
-             
-
-             </form> {% endcomment %}   
-             <a href="{% url 'post_like' pk=post.pk %}"><i class="fa-solid fa-heart"></i></a>
-             Likes: {{post.likes}}
-           
+            <h3> <a href="{% url 'post_like' pk=post.pk %}"><i class="fa-solid fa-heart"></i></a>
+             Likes: {{post.likes}}  </h3>
 <br><hr>
-<h2>COMMENTS: {{ post.comments.count  }}</h2>
+<h2 class="text-center">COMMENTS: {{ post.comments.count  }}</h2>
 {% for comment in comments %}
     <hr>
         <article class="comment">
             <div>
                 {{ comment.created_date }}
+            {% if perms.blog.delete_comment %}
                 <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><i class="fa-sharp fa-solid fa-trash"></i></a>
+            {%endif%}
             </div>
             <strong>{{ comment.author }}</strong>
             <p>{{ comment.text|linebreaks }}</p>
-{% empty %}
+            {% empty %}
             <p>No comments here yet :(</p>
-    
+            <br><br>
         </article>
-    </article><br>
+    
+    </article><br><br>
 
     {% endfor %}
     {% endif %}

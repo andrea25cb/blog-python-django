@@ -18,7 +18,6 @@ class CommentForm(forms.ModelForm):
             'text': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
-
 class ContactForm(forms.Form):
     name = forms.CharField(label='Nombre', max_length=100)
     email = forms.EmailField(label='Correo electrónico')
